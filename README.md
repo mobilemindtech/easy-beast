@@ -17,7 +17,7 @@ https://github.com/mobilemindtech/easy-beast/blob/master/public/EasyBeastInterop
 * Boost beast
 
 
-```
+```bash
 $ mkdir build && cd build
 $ cmake .. && make
 $ sudo make install
@@ -27,7 +27,8 @@ $ sudo make install
 
 https://github.com/mobilemindtech/easy-beast/blob/master/tests/main.c
 
-```
+
+```c
 
 #include <stdlib.h>
 #include <stdio.h>

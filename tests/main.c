@@ -29,6 +29,10 @@ void *thread_start(void* any) {
   pthread_exit(NULL);
 }
 
+
+// This logic serves to initialize thread using the underlying integration.
+// For example, this project was initially created to serve a Scala Native server where
+// thread creation needs to be done by calling the SN API due to garbage collection.
 void thread_starter(thread_init_t thread_init, int thread_count, void* any) {
   pthread_t threads[thread_count];
   void* retval;

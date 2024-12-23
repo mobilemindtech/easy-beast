@@ -6,6 +6,23 @@ Easy boost beast http server with a thin C layer to be embedded in your preferre
 
 https://github.com/mobilemindtech/easy-beast/blob/master/public/EasyBeastInterop.h
 
+
+## Compile and install
+
+#### Requirements
+
+* Boost thread
+* Boost fiber
+* Boost context
+* Boost beast
+
+
+```
+$ mkdir build && cd build
+$ cmake .. && make
+$ sudo make install
+```
+
 ## Usage
 
 https://github.com/mobilemindtech/easy-beast/blob/master/tests/main.c

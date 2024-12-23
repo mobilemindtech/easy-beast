@@ -4,7 +4,11 @@ Easy boost beast http server with a thin C layer to be embedded in your preferre
 
 ## API
 
+https://github.com/mobilemindtech/easy-beast/blob/master/public/EasyBeastInterop.h
+
 ## Usage
+
+https://github.com/mobilemindtech/easy-beast/blob/master/tests/main.c
 
 ```
 

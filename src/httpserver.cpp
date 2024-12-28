@@ -61,7 +61,7 @@ public:
         stream_.expires_after(std::chrono::seconds(5));
 
         //std::cout << "new connection" << std::endl;
-        bench_stop("do_read");
+        //bench_stop("do_read");
 
         http::async_read(
             stream_,
@@ -87,7 +87,7 @@ private:
         if(ec)
             return fail(ec, "read");
 
-        bench_stop("on_read");
+        //bench_stop("on_read");
         // Send the response
         handle_request(std::move(req_));
     }
@@ -323,7 +323,7 @@ private:
     void handle_request(http::request<Body, http::basic_fields<Allocator>>&& req)
     {
 
-        bench_stop("http parse done");
+        //bench_stop("http parse done");
 
         std::string verb = get_verb(req.method());
 
@@ -376,17 +376,17 @@ private:
             this->req_t_->body = body;
         }
 
-        bench_stop("dispach app start");
+        //bench_stop("dispach app start");
 
         if(http_handler_->use_async()) {
 	  return http_handler_->dispatch_async(this->req_t_, [this](response_t* resp){
-                bench_stop("dispach app async done");
+                //bench_stop("dispach app async done");
 		this->resp_t_ = resp;
                 send_response_t();
             });
         } else {
             this->resp_t_ = http_handler_->dispatch(this->req_t_);
-            bench_stop("dispach app sync done");
+            //bench_stop("dispach app sync done");
             return send_response_t();
         }
     }
@@ -498,7 +498,7 @@ private:
         //std::cout << "http_server::on_accept" << std::endl;
         if(!ec){
 
-            bench_start();
+            //bench_start();
 
             std::unique_ptr<http_handler> handler(new http_handler(http_handler_->sync, http_handler_->async));
 
@@ -570,8 +570,11 @@ int run(char* address_,
 	for (auto& th : thread_pool)
 	  th.join();   
 #else
-	handler->thread_starter(thread_init, max_thread_count, &io);
-	//io.run();
+	if(max_thread_count > 1) {
+	  handler->thread_starter(thread_init, max_thread_count, &io);
+	} else {	 
+	  io.run();
+	}
 #endif
 
         

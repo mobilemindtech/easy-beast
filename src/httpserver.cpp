@@ -135,7 +135,9 @@ private:
                                               req_.version() };
 
         res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
-        res.set(http::field::content_type, response->content_type);
+
+	if(response->content_type != NULL)
+	  res.set(http::field::content_type, response->content_type);
 
         headers_t* headers = response->headers;
 
@@ -171,7 +173,9 @@ private:
                                               req_.version() };
 
         res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
-        res.set(http::field::content_type, response->content_type);
+
+	if(response->content_type != NULL)
+	  res.set(http::field::content_type, response->content_type);
 
         headers_t* headers = response->headers;
 
@@ -196,7 +200,10 @@ private:
                                               req_.version() };
 
         res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
-        res.set(http::field::content_type, response->content_type);
+
+	if(response->content_type != NULL)
+	  res.set(http::field::content_type, response->content_type);
+
         res.content_length(response->body->size);
 
         headers_t* headers = response->headers;
